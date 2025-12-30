@@ -1,13 +1,22 @@
 
 function PetList({pets}) {
   
+  if(!pets){
+    return <h1>Loading....</h1>
+  }
+
+  //
 
   return (
     <div>
 
       <h1>Pet List</h1>
 
-      <ul>
+      {
+        !pets.length ?
+        <div>No PETS FOUND</div>
+        :
+        <ul>
         {
           pets.map(
             (onePet)=> (
@@ -15,7 +24,8 @@ function PetList({pets}) {
             )
           )
         }
-      </ul>
+      </ul>}
+
     </div>
   )
 }
