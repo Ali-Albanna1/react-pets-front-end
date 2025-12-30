@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react"
 import * as PetService from '../../services/petService'
 import { useParams } from "react-router"
+import { Link } from "react-router"
 
-function PetDetail() {
+function PetDetail({findPetToUpdate}) {
     const [pet, setPet] =useState(null)
     const {id} = useParams()
       
@@ -24,7 +25,7 @@ function PetDetail() {
        <p>Name :{pet.name}</p> 
        <p>Age :{pet.age}</p>
        <p>Breed :{pet.breed}</p>
-        
+        <div><Link onClick={()=>findPetToUpdate(id)} to={`/pets/${id}/update`}>Edit</Link></div>
         </div>
   )
 }

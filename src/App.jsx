@@ -18,6 +18,7 @@ function App() {
 
   const [pets, setPets] = useState([])
 
+  const [petToUpdate, setPetToUpdate] =useState(null)
 
   // we only want to fetch the pets list
   // ONCE, When the component first ( e.g. on page landing)
@@ -50,6 +51,13 @@ function App() {
     setPets([...pets, pet])
   }
 
+  const findePetToUpdate = (petId) => {
+
+    const foundPet = pets.find( pet => pet._id === petId)
+
+    setPetToUpdate(foundPet)
+  }
+
   return(
     <>
     <div>
@@ -61,9 +69,11 @@ function App() {
 
       <Route path='/' element={<PetList pets={pets}/>}/>
 
-      <Route path='/pets/:id' element={<PetDetail/>}/>
+      <Route path='/pets/:id' element={<PetDetail findPetToUpdate={findePetToUpdate}/>}/>
 
       <Route path='/pets/new' element={<PetForm updatePets={updatePets}/>}/> 
+
+      <Route path='/pets/:id/update' element={<PetForm petToUpdate={petToUpdate} updatePets={updatePets}/>}/> 
     </Routes>
       
     </>

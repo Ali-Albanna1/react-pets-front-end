@@ -42,9 +42,23 @@ const show = async (id) => {
             console.log(error)
         }
     }
+    
+    //same as create but insted of post its put
+    const update = async (petId,formData) => {
+        try{
+
+            const response =await axios.put(`${BASE_URL}/${petId}`, formData)
+            return response.data.pet
+        }
+        catch(error)
+        {
+            console.log(error)
+        }
+    }
 
 export {
     index,
     show,
-    create
+    create,
+    update
 }

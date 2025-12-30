@@ -3,11 +3,11 @@ import * as petService from '../../services/petService'
 import { useNavigate } from 'react-router'
 
 const PetForm = (props) => {
-    const {updatePets} =props
+    const {updatePets, petToUpdate} =props
 
     const navigate=useNavigate()
 
-    const [formState, setFormState] = useState({
+    const [formState, setFormState] = useState(petToUpdate ? petToUpdate : {
         name:'', age:0, breed:''
     })
   
@@ -35,6 +35,18 @@ const PetForm = (props) => {
     //    const payload= {...formState}
 
     //    payload.age =Number(payload.age) 
+
+
+    if(petToUpdate){
+
+        const updatePet = await petService.update(petToUpdate._id, formState)
+        
+        if(updatePet){
+            navigate('/')
+        }
+    }else{
+           console.log("something went wrong")
+    }
      
        const data = await petService.create(formState)
 
