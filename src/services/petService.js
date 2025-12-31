@@ -56,9 +56,20 @@ const show = async (id) => {
         }
     }
 
+    const deleteOne = async (petId)=>{
+        try{
+           const response = await axios.delete(`${BASE_URL}/${petId}`)
+           return response.data.pet
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
 export {
     index,
     show,
     create,
-    update
+    update,
+    deleteOne
 }

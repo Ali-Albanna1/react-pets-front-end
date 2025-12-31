@@ -3,7 +3,7 @@ import * as petService from '../../services/petService'
 import { useNavigate } from 'react-router'
 
 const PetForm = (props) => {
-    const {updatePets, petToUpdate} =props
+    const {updatePets, petToUpdate, updateOnePet} =props
 
     const navigate=useNavigate()
 
@@ -42,6 +42,7 @@ const PetForm = (props) => {
         const updatePet = await petService.update(petToUpdate._id, formState)
         
         if(updatePet){
+           updateOnePet(updatePet)
             navigate('/')
         }
     }else{
